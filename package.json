@@ -1,0 +1,29 @@
+{
+  "name": "the-game-that-plays-itself",
+  "version": "0.1.0",
+  "description": "A 2D sandbox simulation where LLM-driven agents gather, build, survive, and interact",
+  "type": "module",
+  "scripts": {
+    "dev": "echo 'TODO: Add dev script'",
+    "build": "tsc",
+    "test": "vitest",
+    "lint": "eslint src/**/*.ts"
+  },
+  "keywords": [
+    "ai",
+    "simulation",
+    "llm",
+    "game",
+    "sandbox"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
