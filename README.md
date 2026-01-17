@@ -44,15 +44,46 @@ Each component has its own devlog for tracking progress:
 
 ## Getting Started
 
-```bash
-# Install dependencies
-npm install
+### 1. Install Dependencies
 
-# Run development server
+```bash
+npm install
+cd src/web && npm install && cd ../..
+```
+
+### 2. Configure Environment
+
+Create a `.env` file in the root directory:
+
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` and add your Gemini API key:
+
+```bash
+# Get your API key from: https://aistudio.google.com/app/apikey
+GEMINI_API_KEY=your_actual_api_key_here
+```
+
+**Note**: If you don't set `GEMINI_API_KEY`, the game will automatically use a dummy AI that makes random moves (useful for testing visuals).
+
+### 3. Run the Game
+
+```bash
+# Terminal 1: Start the server (port 3001)
 npm run dev
 
-# Run tests
-npm test
+# Terminal 2: Start the web visualization (port 5174)
+cd src/web && npm run dev
+```
+
+Then open http://localhost:5174 in your browser to watch the agents!
+
+### 4. Build for Production
+
+```bash
+npm run build
 ```
 
 ## License
