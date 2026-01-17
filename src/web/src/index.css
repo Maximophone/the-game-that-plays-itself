@@ -17,12 +17,31 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
+.app {
+  min-height: 100vh;
+}
+
+.error-banner {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
 .game-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
   min-height: 100vh;
+}
+
+.game-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
 }
 
 .grid-wrapper {
@@ -61,12 +80,12 @@ body {
 
 .block.stone {
   background-color: var(--stone-color);
-  box-shadow: inset -2px -2px 0 rgba(0,0,0,0.2);
+  box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .block.wood {
   background-color: var(--wood-color);
-  box-shadow: inset -2px -2px 0 rgba(0,0,0,0.2);
+  box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .block.berry_bush {
@@ -111,7 +130,7 @@ body {
   height: 70%;
   border-radius: 50%;
   border: 2px solid white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,7 +141,7 @@ body {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
@@ -148,12 +167,165 @@ body {
   font-size: 2rem;
   font-weight: 800;
   background: linear-gradient(to right, #60a5fa, #a855f7);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+.header-stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
 .turn-counter {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #94a3b8;
-  margin-top: 0.5rem;
+}
+
+.agents-alive {
+  font-size: 0.9rem;
+  color: #64748b;
+  background: rgba(100, 116, 139, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(30, 41, 59, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--grid-border);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.status-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #cbd5e1;
+}
+
+/* Messages Panel */
+.messages-panel {
+  width: 300px;
+  background: rgba(30, 41, 59, 0.5);
+  border: 2px solid var(--grid-border);
+  border-radius: 8px;
+  padding: 1rem;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(8px);
+}
+
+.messages-panel h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  border-bottom: 2px solid var(--grid-border);
+  padding-bottom: 0.5rem;
+}
+
+.messages-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.messages-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages-list::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 3px;
+}
+
+.messages-list::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.5);
+  border-radius: 3px;
+}
+
+.messages-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.7);
+}
+
+.no-messages {
+  color: #64748b;
+  font-style: italic;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.message {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 6px;
+  padding: 0.75rem;
+  transition: all 0.2s;
+}
+
+.message:hover {
+  border-color: rgba(100, 116, 139, 0.4);
+  background: rgba(15, 23, 42, 0.8);
+  transform: translateX(2px);
+}
+
+.message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.message-agent {
+  font-weight: 600;
+  color: #60a5fa;
+  font-size: 0.875rem;
+}
+
+.message-turn {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.message-content {
+  color: #e2e8f0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.message-position {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-family: 'Monaco', monospace;
 }

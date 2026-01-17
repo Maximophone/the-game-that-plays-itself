@@ -1,10 +1,10 @@
-import { AgentView, AgentIdentity, Position } from "../shared/types.js";
+import { AgentView, AgentIdentity } from "../shared/types.js";
 
 /**
  * Formats the agent's view into a readable text prompt for the LLM.
  */
 export function formatPrompt(view: AgentView, identity: AgentIdentity): string {
-    const { self, visibleCells, visibleAgents, recentMessages, turn } = view;
+    const { self, visibleAgents, recentMessages, turn } = view;
 
     return `You are ${identity.name}, a creature in a world of blocks. You must survive.
 ${identity.personality ? `\nPERSONALITY:\n${identity.personality}\n` : ""}

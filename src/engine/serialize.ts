@@ -4,7 +4,7 @@
  * Pure functions with no side effects.
  */
 
-import type { AgentView, BlockType, VisibleCell } from "../shared/types.ts";
+import type { AgentView, BlockType, VisibleCell } from "../shared/types.js";
 
 /**
  * Block type to display symbol mapping.

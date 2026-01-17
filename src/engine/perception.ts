@@ -12,8 +12,8 @@ import type {
     VisibleAgent,
     HeardMessage,
     Position,
-} from "../shared/types.ts";
-import { manhattanDistance, getRelativeDirection } from "./helpers.ts";
+} from "../shared/types.js";
+import { manhattanDistance, getRelativeDirection } from "./helpers.js";
 
 /**
  * Generate the view of the world from an agent's perspective.

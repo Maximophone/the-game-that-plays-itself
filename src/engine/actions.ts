@@ -9,22 +9,18 @@ import type {
     AgentId,
     Action,
     Agent,
-    Message,
-    Position,
     BlockType,
-    Direction,
-} from "../shared/types.ts";
+} from "../shared/types.js";
 import {
     getTargetPosition,
-    getCell,
     cloneGrid,
     isGatherable,
     getGatherYield,
     gatherRemovesBlock,
     randomChoice,
     isFood,
-} from "./helpers.ts";
-import { validateAction } from "./validation.ts";
+} from "./helpers.js";
+import { validateAction } from "./validation.js";
 
 /**
  * Compute the next game state given current state and all agent actions.

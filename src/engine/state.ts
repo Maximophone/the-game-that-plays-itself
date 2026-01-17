@@ -12,10 +12,9 @@ import type {
     Agent,
     AgentIdentity,
     Position,
-    BlockType,
-} from "../shared/types.ts";
-import { DEFAULT_CONFIG } from "../shared/types.ts";
-import { randomInt, shuffleArray } from "./helpers.ts";
+} from "../shared/types.js";
+import { DEFAULT_CONFIG } from "../shared/types.js";
+import { shuffleArray } from "./helpers.js";
 
 /**
  * Create the initial game state.

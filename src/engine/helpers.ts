@@ -10,7 +10,7 @@ import type {
     Grid,
     Cell,
     BlockType,
-} from "../shared/types.ts";
+} from "../shared/types.js";
 
 /**
  * Calculate the target position when moving in a direction.

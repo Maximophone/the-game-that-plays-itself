@@ -6,11 +6,11 @@
  */
 
 // Re-export core functions
-export { createInitialState } from "./state.ts";
-export { computeNextState } from "./actions.ts";
-export { validateAction } from "./validation.ts";
-export { generateAgentView } from "./perception.ts";
-export { serializeStateForAgent } from "./serialize.ts";
+export { createInitialState } from "./state.js";
+export { computeNextState } from "./actions.js";
+export { validateAction } from "./validation.js";
+export { generateAgentView } from "./perception.js";
+export { serializeStateForAgent } from "./serialize.js";
 
 // Re-export helper utilities that may be useful to consumers
 export {
@@ -20,4 +20,4 @@ export {
     isWalkable,
     isGatherable,
     getRelativeDirection,
-} from "./helpers.ts";
+} from "./helpers.js";

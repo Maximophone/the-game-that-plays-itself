@@ -10,7 +10,7 @@ import type {
     Action,
     ValidationResult,
     Agent,
-} from "../shared/types.ts";
+} from "../shared/types.js";
 import {
     getTargetPosition,
     isInBounds,
@@ -19,7 +19,7 @@ import {
     getCell,
     isFood,
     canBuildAt,
-} from "./helpers.ts";
+} from "./helpers.js";
 
 /**
  * Validate if an action is legal for a given agent in the current state.

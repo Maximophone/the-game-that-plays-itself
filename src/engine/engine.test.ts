@@ -9,14 +9,14 @@ import {
     validateAction,
     generateAgentView,
     serializeStateForAgent,
-} from "./index.ts";
+} from "./index.js";
 import type {
     GameState,
     GameConfig,
     AgentIdentity,
     Action,
-} from "../shared/types.ts";
-import { DEFAULT_CONFIG } from "../shared/types.ts";
+} from "../shared/types.js";
+import { DEFAULT_CONFIG } from "../shared/types.js";
 
 // =============================================================================
 // Test Fixtures
