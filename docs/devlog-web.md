@@ -1,32 +1,24 @@
-# Web Visualization Devlog
+# Web Development Log
 
-Development log for the **Web** component — visualization and observation UI.
+## 2026-01-17: Initial Grid Visualization
 
-**Owner**: TBD  
-**Status**: Not Started
+### Implemented
+- Initialized Vite + React + TypeScript project in `src/web/`.
+- Configured TypeScript to support shared types from `src/shared/types.ts`.
+- Created mock game state with a 15x15 grid, blocks (stone, wood, berry bush), and 3 agents (Aria, Bob, Charlie).
+- Implemented `<Grid />` component for rendering cell terrain and blocks.
+- Implemented `<Agent />` component for rendering agents with hover tooltips.
+- Implemented `<GameView />` as the main container.
+- Added a polished dark theme with HSL-tailored colors and subtle shadows.
 
----
+### Verification
+- Verified build with `npm run build`.
+- Manually verified UI with `npm run dev` and browser tool:
+  - Grid is centered and visually appealing.
+  - Agents appear at correct coordinates.
+  - Hovering shows agent stats correctly.
+  - All block types have unique visual representations.
 
-## Responsibilities
-
-- Render 2D grid with blocks and agents
-- Display speech bubbles and thought bubbles
-- Agent inspector panel (click to see details)
-- Event log / timeline
-- Playback controls (pause, step, speed)
-- WebSocket connection to server for real-time updates
-
-## Dependencies
-
-- `src/shared/types.ts`
-- React + TypeScript + Vite
-
-## Log
-
-### 2026-01-17 — Project Created
-- Initial project setup
-- Architecture defined in idea.md
-
----
-
-*Add entries above this line as you work on the component.*
+### Next Steps
+- Connect to server via WebSocket to display real-time game state.
+- Add "Observation UI" features: speech bubbles, thought bubbles, and agent inspector.

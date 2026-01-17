@@ -1,7 +1,7 @@
 # Job: Core Engine Functions
 
 **Component**: engine  
-**Status**: pending
+**Status**: ✅ complete
 
 ## Context
 
@@ -73,3 +73,29 @@ Convert AgentView to a text prompt that an LLM can understand. See `idea.md` sec
 - The engine should be runnable in both browser and Node.js (no Node-specific APIs).
 - For randomness, you can use `Math.random()` — we're not worried about determinism for now.
 - Don't over-engineer. Start simple, we can refine later.
+
+---
+
+## Completion Report
+
+**Implemented by**: Antigravity (AI Coding Assistant)  
+**Date**: 2026-01-17
+
+### Summary of Work
+Implemented all 5 core engine functions across 6 modular TypeScript files. The engine is pure, thread-safe (due to immutability), and handles simultaneous action resolution using a random-winner strategy for conflicts. A comprehensive suite of 47 unit tests was added to ensure reliability across all survival and interaction mechanics.
+
+### Architecture & Design
+- **Modularity**: Split logic into `state.ts`, `actions.ts`, `validation.ts`, `perception.ts`, and `serialize.ts` to keep the codebase maintainable.
+- **Conflict Resolution**: Implemented a "gather phase," "move phase," etc., within `computeNextState` where potentially conflicting actions are grouped by target position and resolved randomly.
+- **LLM Serialization**: Created a robust text renderer that provides agents with a centered relative grid and cardinal directions for heard messages.
+
+### Problems & Solutions
+- **TS Extension Lints**: Encountered linter errors regarding `.ts` extensions in imports (standard for Vite/Vitest projects using `moduleResolution: "bundler"`). Fixed by updating `tsconfig.json` with `allowImportingTsExtensions: true` and `emitDeclarationOnly: true`.
+- **Berry Bushes**: Clarified behavior where gathering from a bush yields a berry but the bush remains (renewable resource), whereas stone/wood are consumed.
+
+### Critical Notes for the Architect
+- **Performance**: The grid scanning in `generateAgentView` is $O(W \times H)$ per agent per turn. For very large grids, this might need optimization (e.g., spatial partitioning), but for the MVP (20x20), it is perfectly efficient.
+- **Randomness**: Used `Math.random()`. If determinism is required for replays later, we should switch to a seeded PRNG.
+
+**Verification**: All 47 tests passed successfully.
+
