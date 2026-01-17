@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express, { Request, Response } from "express";
 import { createServer } from "http";
 import { GameState, AgentIdentity, AgentId } from "../shared/types.js";
