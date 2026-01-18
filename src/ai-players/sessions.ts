@@ -7,7 +7,7 @@
 
 import { ChatSession } from "@google/generative-ai";
 import { AgentId, AgentIdentity } from "../shared/types.js";
-import { createChatSession } from "./gemini.js";
+import { createChatSession, sendMessageWithRetry } from "./gemini.js";
 import { formatSystemPrompt } from "./prompt.js";
 import { initChatLogs, logChatMessage, clearChatLogs } from "./chat-logger.js";
 
@@ -33,10 +33,10 @@ export async function initializeChat(
     // Log the system prompt
     logChatMessage(agentId, identity.name, "system", systemPrompt);
 
-    const response = await chat.sendMessage(systemPrompt);
+    const responseText = await sendMessageWithRetry(chat, systemPrompt);
 
     // Log the initial response
-    logChatMessage(agentId, identity.name, "assistant", response.response.text());
+    logChatMessage(agentId, identity.name, "assistant", responseText);
 
     // Store the session and name
     agentSessions.set(agentId, chat);

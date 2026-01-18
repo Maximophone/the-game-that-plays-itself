@@ -240,22 +240,31 @@ For MVP, implement simple retry + fallback to stateless.
 
 Implemented persistent chat sessions for AI agents using the Gemini Chat API. Each agent now maintains a conversation history across turns, allowing the LLM to remember previous interactions and form coherent long-term behavior.
 
+### Features Implemented
+
+1. **Persistent Chat Sessions** — Each agent maintains conversation history across turns
+2. **JSON Response Format** — LLMs respond with structured JSON (`{"thought": "...", "action": "..."}`) for reliable parsing
+3. **Chat History Logging** — Full conversation logs saved to `./logs/chats/{session}/` for debugging
+4. **Rate Limit Handling** — Exponential backoff with 5 retries for 429 errors (uses API-provided retry delay)
+
 ### Changes Made
 
 | File | Change |
 |------|--------|
-| `src/ai-players/sessions.ts` | NEW - Chat session management with `initializeChat`, `getChat`, `clearChat`, `clearAllChats` |
-| `src/ai-players/gemini.ts` | Added `createChatSession()` function |
-| `src/ai-players/prompt.ts` | Added `formatSystemPrompt()` and `formatTurnPrompt()` for persistent chat |
-| `src/ai-players/index.ts` | Refactored to use chat sessions with stateless fallback |
-| `src/ai-players/dummy.ts` | Added `clearDummyMemory()` for consistent interface |
-| `src/server/game-loop.ts` | Calls `clearAllChats()` on simulation start |
-| `src/cli/runner.ts` | Calls `clearAllChats()` in constructor |
-| `src/ai-players/ai-players.test.ts` | Added tests for new prompt functions (17 tests total) |
+| `src/ai-players/sessions.ts` | NEW - Chat session management with retry support |
+| `src/ai-players/chat-logger.ts` | NEW - Markdown chat logs per agent |
+| `src/ai-players/gemini.ts` | Added `createChatSession()`, `sendMessageWithRetry()`, rate limit handling |
+| `src/ai-players/prompt.ts` | JSON format system/turn prompts |
+| `src/ai-players/parser.ts` | JSON response parser (`parseJsonResponse()`) |
+| `src/ai-players/index.ts` | Uses chat sessions + JSON parsing + logging |
+| `src/ai-players/dummy.ts` | Added `clearDummyMemory()` |
+| `src/server/game-loop.ts` | Clears sessions on start |
+| `src/cli/runner.ts` | Clears sessions on start |
+| `src/ai-players/ai-players.test.ts` | 19 tests for prompts + JSON parsing |
 
 ### Verification
 
 - ✅ Build passes (`npm run build`)
-- ✅ All 17 tests pass (`npm test src/ai-players/ai-players.test.ts`)
+- ✅ All 19 tests pass (`npm test src/ai-players/ai-players.test.ts`)
 - ✅ No lint errors
-
+- ✅ Rate limits handled gracefully during long simulations

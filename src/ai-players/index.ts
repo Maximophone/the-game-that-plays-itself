@@ -1,5 +1,5 @@
 import { Action, AgentView, AgentIdentity } from "../shared/types.js";
-import { callGemini } from "./gemini.js";
+import { callGemini, sendMessageWithRetry } from "./gemini.js";
 import { formatPrompt, formatTurnPrompt } from "./prompt.js";
 import { parseJsonResponse } from "./parser.js";
 import { getChat, initializeChat } from "./sessions.js";
@@ -29,8 +29,7 @@ export async function getAction(view: AgentView, identity: AgentIdentity): Promi
         // Log the turn prompt
         logChatMessage(identity.id, identity.name, "user", turnPrompt, turn);
 
-        const result = await chat.sendMessage(turnPrompt);
-        response = result.response.text();
+        response = await sendMessageWithRetry(chat, turnPrompt);
 
         // Log the response
         logChatMessage(identity.id, identity.name, "assistant", response, turn);
@@ -54,8 +53,7 @@ Respond now with valid JSON:`;
 
             logChatMessage(identity.id, identity.name, "user", retryPrompt, turn);
 
-            const retryResult = await chat.sendMessage(retryPrompt);
-            response = retryResult.response.text();
+            response = await sendMessageWithRetry(chat, retryPrompt);
 
             logChatMessage(identity.id, identity.name, "assistant", response, turn);
 
