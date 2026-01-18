@@ -161,6 +161,8 @@ export class SimulationRunner {
         const names = ["Alice", "Bob", "Charlie", "Diana", "Eve", "Frank", "Grace", "Hank"];
         const personalities = [
             "No suggestion, as the AI you can be yourself and approach this game as you see fit.",
+            "No suggestion, as the AI you can be yourself and approach this game as you see fit.",
+            "No suggestion, as the AI you can be yourself and approach this game as you see fit.",
             "A cautious builder focusing on stone structures.",
             "A social agent who prioritizes communication.",
             "A competitive gatherer who works fast.",
