@@ -6,7 +6,7 @@ import { parseAction } from "./parser.js";
 /**
  * Gets the next action for an agent based on its view and identity.
  */
-export async function getAction(view: AgentView, identity: AgentIdentity): Promise<Action> {
+export async function getAction(view: AgentView, identity: AgentIdentity): Promise<{ action: Action; thought: string }> {
     const prompt = formatPrompt(view, identity);
 
     try {
@@ -23,20 +23,22 @@ export async function getAction(view: AgentView, identity: AgentIdentity): Promi
 
         if (!action) {
             console.error(`[AI Player] Failed to parse action for ${identity.name} after retry. Defaulting to wait.`);
-            return { type: "wait" };
+            return { action: { type: "wait" }, thought: "Failed to process decision" };
         }
 
-        // Log the thought if present
+        // Extract the thought if present
         const thoughtMatch = response.match(/THOUGHT:\s*(.+)/i);
-        if (thoughtMatch) {
-            console.log(`[AI Player] ${identity.name} thoughts: ${thoughtMatch[1].trim()}`);
+        const thought = thoughtMatch ? thoughtMatch[1].trim() : "";
+
+        if (thought) {
+            console.log(`[AI Player] ${identity.name} thoughts: ${thought}`);
         }
         console.log(`[AI Player] ${identity.name} action: ${JSON.stringify(action)}`);
 
-        return action;
+        return { action, thought };
     } catch (error) {
         console.error(`[AI Player] Error getting action for ${identity.name}:`, error);
         // Default to wait on error
-        return { type: "wait" };
+        return { action: { type: "wait" }, thought: "Error occurred" };
     }
 }

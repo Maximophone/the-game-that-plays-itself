@@ -76,6 +76,8 @@ export interface Agent {
   inventory: BlockType[]; // Max items = config.inventorySize
   color: string; // Hex color for visualization
   isAlive: boolean;
+  lastThought?: string; // Most recent thought/reasoning from AI
+  lastAction?: Action; // Most recent action taken
 }
 
 export interface Message {

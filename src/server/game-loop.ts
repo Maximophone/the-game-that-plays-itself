@@ -20,6 +20,7 @@ if (USE_DUMMY_AI) {
 let currentState: GameState;
 let agentIdentities: Map<AgentId, AgentIdentity>;
 let isRunning = false;
+let timeoutId: NodeJS.Timeout | null = null;
 
 /**
  * Start the game loop
@@ -27,20 +28,20 @@ let isRunning = false;
 export function startLoop(
     initialState: GameState,
     identities: Map<AgentId, AgentIdentity>,
-    broadcast: BroadcastFunction
+    broadcastFn: BroadcastFunction
 ): void {
+    // Stop existing loop if any
+    stopLoop();
+
     currentState = initialState;
     agentIdentities = identities;
     isRunning = true;
 
     console.log(`[Game Loop] Starting with turn duration: ${TURN_DURATION_MS}ms`);
-    console.log(`[Game Loop] Initial agents: ${Array.from(identities.values()).map(i => i.name).join(", ")}`);
+    console.log(`[Game Loop] Initial agents: ${Array.from(agentIdentities.values()).map(a => a.name).join(", ")}`);
 
-    // Broadcast initial state
-    broadcast(currentState);
-
-    // Start the loop
-    runTurn(broadcast);
+    // Start the first turn
+    runTurn(broadcastFn);
 }
 
 /**
@@ -48,7 +49,11 @@ export function startLoop(
  */
 export function stopLoop(): void {
     isRunning = false;
-    console.log("[Game Loop] Stopped");
+    if (timeoutId) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+    }
+    console.log("[Game Loop] Loop stopped");
 }
 
 /**
@@ -95,10 +100,17 @@ async function runTurn(broadcast: BroadcastFunction): Promise<void> {
 
         const actionResults = await Promise.all(actionPromises);
 
-        // 4. Build actions map
+        // 4. Build actions map and update agent thoughts
         const actions = new Map<AgentId, Action>();
-        actionResults.forEach(({ agentId, action }) => {
+        actionResults.forEach(({ agentId, action, thought }) => {
             actions.set(agentId, action);
+
+            // Update agent's lastThought and lastAction
+            const agent = currentState.agents.get(agentId);
+            if (agent) {
+                agent.lastThought = thought;
+                agent.lastAction = action;
+            }
         });
 
         // 5. Compute next state
@@ -122,7 +134,9 @@ async function runTurn(broadcast: BroadcastFunction): Promise<void> {
     // Schedule next turn
     const turnDuration = Date.now() - turnStart;
     const delay = Math.max(0, TURN_DURATION_MS - turnDuration);
-    setTimeout(() => runTurn(broadcast), delay);
+    if (isRunning) {
+        timeoutId = setTimeout(() => runTurn(broadcast), delay);
+    }
 }
 
 /**
@@ -132,19 +146,19 @@ async function getActionWithTimeout(
     view: any,
     identity: AgentIdentity,
     agentId: AgentId
-): Promise<{ agentId: AgentId; action: Action }> {
+): Promise<{ agentId: AgentId; action: Action; thought: string }> {
     try {
         const getAction = USE_DUMMY_AI ? getDummyAction : getAIAction;
-        const action = await Promise.race([
+        const result = await Promise.race([
             getAction(view, identity),
             timeoutPromise(AI_TIMEOUT_MS),
         ]);
 
-        return { agentId, action };
+        return { agentId, action: result.action, thought: result.thought };
     } catch (error) {
         console.error(`[Game Loop] Failed to get action for ${identity.name}:`, error);
         // Default to wait action
-        return { agentId, action: { type: "wait" } };
+        return { agentId, action: { type: "wait" }, thought: "Action timeout" };
     }
 }
 

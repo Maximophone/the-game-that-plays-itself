@@ -4,26 +4,27 @@ import type { Agent as AgentType } from '../../../shared/types';
 interface AgentProps {
     agent: AgentType;
     cellSize: number;
+    onClick?: () => void;
 }
 
-const Agent: React.FC<AgentProps> = ({ agent, cellSize }) => {
+const Agent: React.FC<AgentProps> = ({ agent, cellSize, onClick }) => {
+    if (!agent.isAlive) return null;
+
     const style: React.CSSProperties = {
-        left: agent.position.x * cellSize,
-        top: agent.position.y * cellSize,
-        width: cellSize,
-        height: cellSize,
+        left: `${agent.position.x * cellSize}px`,
+        top: `${agent.position.y * cellSize}px`,
+        backgroundColor: agent.color,
+        cursor: onClick ? 'pointer' : 'default',
     };
 
     return (
-        <div className="agent" style={style}>
-            <div
-                className="agent-circle"
-                style={{ backgroundColor: agent.color }}
-            />
-            <div className="agent-tooltip">
-                <strong>{agent.name}</strong>
-                <div>Hunger: {Math.round(agent.hunger)}%</div>
-            </div>
+        <div
+            className="agent"
+            style={style}
+            title={`${agent.name} (Hunger: ${agent.hunger})`}
+            onClick={onClick}
+        >
+            <div className="agent-name">{agent.name}</div>
         </div>
     );
 };

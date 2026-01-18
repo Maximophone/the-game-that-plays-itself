@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express, { Request, Response } from "express";
 import { createServer } from "http";
-import { GameState, AgentIdentity, AgentId } from "../shared/types.js";
+import { AgentIdentity, AgentId } from "../shared/types.js";
 import { WebSocket } from "ws";
 import { createInitialState } from "../engine/index.js";
 import { initializeWebSocket, broadcastState, sendStateToClient } from "./websocket.js";
@@ -15,6 +15,7 @@ const PORT = parseInt(process.env.PORT || "3001", 10);
 
 // Initialize Express app
 const app = express();
+app.use(express.json()); // Enable JSON body parsing
 const httpServer = createServer(app);
 
 // Basic health check endpoint
@@ -33,56 +34,76 @@ wss.on("connection", (ws: WebSocket) => {
     }
 });
 
-// Define agent identities with personalities
-const agentIdentities = new Map<AgentId, AgentIdentity>([
-    [
-        "agent_1",
-        {
-            id: "agent_1",
-            name: "Aria",
-            personality:
-                "You are friendly and love to build structures. You prefer cooperation over conflict. You enjoy helping others and building shelters.",
-        },
-    ],
-    [
-        "agent_2",
-        {
-            id: "agent_2",
-            name: "Rex",
-            personality:
-                "You are cautious and focused on survival. You prioritize gathering food and resources. You are wary of others but will trade if necessary.",
-        },
-    ],
-    [
-        "agent_3",
-        {
-            id: "agent_3",
-            name: "Zara",
-            personality:
-                "You are curious and adventurous. You like to explore the map and interact with others. You are social and love to chat.",
-        },
-    ],
-    [
-        "agent_4",
-        {
-            id: "agent_4",
-            name: "Nova",
-            personality:
-                "You are strategic and analytical. You plan ahead and try to optimize your actions. You value efficiency and smart resource management.",
-        },
-    ],
-]);
+// Helper to generate agent identities
+function generateAgentIdentities(count: number): Map<AgentId, AgentIdentity> {
+    const identities = new Map<AgentId, AgentIdentity>();
+    const basePersonalities = [
+        { name: "Aria", p: "You are friendly and love to build structures. You prefer cooperation over conflict." },
+        { name: "Rex", p: "You are cautious and focused on survival. You prioritize gathering food and resources." },
+        { name: "Zara", p: "You are curious and observant. You like to explore the map and interact with others." },
+        { name: "Nova", p: "You are energetic and efficient. You try to optimize your actions for maximum gathering." },
+        { name: "Luna", p: "You are peaceful and avoid crowded areas. You like to maintain your own space." },
+        { name: "Orion", p: "You are assertive and protective of your territory." },
+        { name: "Atlas", p: "You are a builder at heart, always looking for materials to construct." },
+        { name: "Sage", p: "You are wise and patient, often waiting to see what others do before acting." },
+    ];
 
-// Create initial game state
-console.log("[Server] Creating initial game state...");
-const initialState: GameState = createInitialState(
-    {}, // Use default config
-    Array.from(agentIdentities.values())
-);
+    for (let i = 0; i < count; i++) {
+        const id = `agent_${i + 1}`;
+        // Use base personality or generate generic one if we run out
+        const base = basePersonalities[i % basePersonalities.length];
+        const suffix = i >= basePersonalities.length ? ` ${Math.floor(i / basePersonalities.length) + 1}` : "";
 
-// Start the game loop
-console.log("[Server] Starting game loop...");
-startLoop(initialState, agentIdentities, broadcastState);
+        identities.set(id, {
+            id,
+            name: `${base.name}${suffix}`,
+            personality: base.p,
+        });
+    }
+    return identities;
+}
+
+// Global state for identities
+let agentIdentities = generateAgentIdentities(parseInt(process.env.AGENT_COUNT || "4", 10));
+
+// Restart endpoint
+app.post("/api/restart", (req: Request, res: Response) => {
+    const { agentCount } = req.body;
+    const count = typeof agentCount === 'number' ? Math.max(1, Math.min(20, agentCount)) : 4;
+
+    console.log(`[Server] Restarting game with ${count} agents...`);
+
+    // Stop current loop (we'll need to export a stop function from game-loop, 
+    // but for now startLoop with new state effectively resets if we handle logic right)
+    // Actually, we need to be careful about not having two loops.
+    // Let's modify game-loop to export a stopGame function.
+
+    startGame(count);
+
+    res.json({ status: "restarted", agentCount: count });
+});
+
+function startGame(agentCount: number) {
+    // Generate fresh identities
+    agentIdentities = generateAgentIdentities(agentCount);
+
+    // Create initial state
+    const initialState = createInitialState(
+        {
+            gridWidth: 20,
+            gridHeight: 20,
+        },
+        Array.from(agentIdentities.values())
+    );
+
+    // Start game loop (this should ideally cancel previous loop)
+    startLoop(initialState, agentIdentities, (state) => {
+        broadcastState(state);
+    });
+}
+
+// Initial start
+startGame(agentIdentities.size);
 
 // Start HTTP server
 httpServer.listen(PORT, () => {
