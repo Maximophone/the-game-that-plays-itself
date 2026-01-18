@@ -99,17 +99,26 @@ export class SimulationRunner {
                 view: generateAgentView(this.currentState, agentId),
             }));
 
-            // 2. Get actions in parallel
-            const actionPromises = agentViews.map(({ agentId, view }) => {
+            // 2. Get actions with staggering to avoid API bursts
+            const actionResults = [];
+            for (let i = 0; i < agentViews.length; i++) {
+                const { agentId, view } = agentViews[i];
                 const identity = this.agentIdentities.get(agentId)!;
-                return this.getActionWithTimeout(view, identity, agentId);
-            });
 
-            const actionResults = await Promise.all(actionPromises);
+                // Start request
+                actionResults.push(this.getActionWithTimeout(view, identity, agentId));
+
+                // If not the last agent, wait a bit before starting the next request
+                if (i < agentViews.length - 1) {
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+            }
+
+            const results = await Promise.all(actionResults);
 
             // 3. Apply actions and update state
             const actionsMap = new Map<AgentId, Action>();
-            actionResults.forEach(({ agentId, action, thought }) => {
+            results.forEach(({ agentId, action, thought }) => {
                 actionsMap.set(agentId, action);
                 const agent = this.currentState.agents.get(agentId);
                 if (agent) {

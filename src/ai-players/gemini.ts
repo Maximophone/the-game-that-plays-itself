@@ -10,8 +10,8 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
 
 // Retry configuration
-const MAX_RETRIES = 5;
-const BASE_DELAY_MS = 1000; // Start with 1 second
+const MAX_RETRIES = 10;
+const BASE_DELAY_MS = 2000; // Start with 2 seconds
 
 /**
  * Sleep for a given number of milliseconds.
@@ -25,13 +25,15 @@ function sleep(ms: number): Promise<void> {
  */
 function getRetryDelayFromError(error: unknown): number | null {
     if (error && typeof error === "object" && "errorDetails" in error) {
-        const details = (error as { errorDetails: Array<{ "@type": string; retryDelay?: string }> }).errorDetails;
-        for (const detail of details) {
-            if (detail["@type"] === "type.googleapis.com/google.rpc.RetryInfo" && detail.retryDelay) {
-                // Parse "4s" or "4.5s" format
-                const match = detail.retryDelay.match(/^([\d.]+)s$/);
-                if (match) {
-                    return Math.ceil(parseFloat(match[1]) * 1000);
+        const details = (error as { errorDetails: any }).errorDetails;
+        if (Array.isArray(details)) {
+            for (const detail of details) {
+                if (detail && detail["@type"] === "type.googleapis.com/google.rpc.RetryInfo" && detail.retryDelay) {
+                    // Parse "4s" or "4.5s" format
+                    const match = detail.retryDelay.match(/^([\d.]+)s$/);
+                    if (match) {
+                        return Math.ceil(parseFloat(match[1]) * 1000);
+                    }
                 }
             }
         }
@@ -43,7 +45,22 @@ function getRetryDelayFromError(error: unknown): number | null {
  * Check if an error is a rate limit (429) error.
  */
 function isRateLimitError(error: unknown): boolean {
-    return !!(error && typeof error === "object" && "status" in error && (error as { status: number }).status === 429);
+    if (!error || typeof error !== "object") return false;
+
+    // Check for status property (common in some error wrappers)
+    if ("status" in error && (error as { status: number }).status === 429) return true;
+
+    // Check for response.status (Google internal style)
+    const err = error as any;
+    if (err.response?.status === 429) return true;
+
+    // Check message string (fallback)
+    const message = err.message || "";
+    if (typeof message === "string" && (message.includes("429") || message.toLowerCase().includes("rate limit"))) {
+        return true;
+    }
+
+    return false;
 }
 
 /**
@@ -81,8 +98,12 @@ export async function callGemini(prompt: string): Promise<string> {
                 const backoffDelay = BASE_DELAY_MS * Math.pow(2, attempt);
                 const delayMs = apiDelay || backoffDelay;
 
-                console.warn(`[Gemini] Rate limited (429). Retrying in ${delayMs}ms... (attempt ${attempt + 1}/${MAX_RETRIES})`);
-                await sleep(delayMs);
+                // Add jitter (±20%)
+                const jitter = (Math.random() * 0.4 - 0.2) * delayMs;
+                const finalDelay = Math.max(100, delayMs + jitter);
+
+                console.warn(`[Gemini] Rate limited (429). Retrying in ${Math.round(finalDelay)}ms... (attempt ${attempt + 1}/${MAX_RETRIES})`);
+                await sleep(finalDelay);
             } else {
                 // Not a rate limit error, don't retry
                 console.error("Error calling Gemini API:", error);
@@ -116,8 +137,12 @@ export async function sendMessageWithRetry(
                 const backoffDelay = BASE_DELAY_MS * Math.pow(2, attempt);
                 const delayMs = apiDelay || backoffDelay;
 
-                console.warn(`[Gemini] Rate limited (429). Retrying in ${delayMs}ms... (attempt ${attempt + 1}/${MAX_RETRIES})`);
-                await sleep(delayMs);
+                // Add jitter (±20%)
+                const jitter = (Math.random() * 0.4 - 0.2) * delayMs;
+                const finalDelay = Math.max(100, delayMs + jitter);
+
+                console.warn(`[Gemini] Rate limited (429). Retrying in ${Math.round(finalDelay)}ms... (attempt ${attempt + 1}/${MAX_RETRIES})`);
+                await sleep(finalDelay);
             } else {
                 console.error("Error calling Gemini API:", error);
                 throw error;
