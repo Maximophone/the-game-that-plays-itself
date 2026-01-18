@@ -1,0 +1,3496 @@
+{
+  "metadata": {
+    "engineVersion": "0.1.0",
+    "createdAt": "2026-01-18T10:20:15.753Z",
+    "lastUpdatedAt": "2026-01-18T10:20:28.141Z",
+    "config": {
+      "gridWidth": 20,
+      "gridHeight": 20,
+      "visionRadius": 5,
+      "inventorySize": 5,
+      "hungerDepletionPerTurn": 2,
+      "hitDamage": 20,
+      "berryHungerRestore": 30,
+      "maxHunger": 100
+    },
+    "finalTurn": 1,
+    "status": "running"
+  },
+  "turns": [
+    {
+      "turn": 0,
+      "grid": {
+        "width": 20,
+        "height": 20,
+        "cells": [
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            }
+          ]
+        ]
+      },
+      "agents": {
+        "agent_1": {
+          "id": "agent_1",
+          "name": "Aria",
+          "position": {
+            "x": 19,
+            "y": 0
+          },
+          "hunger": 100,
+          "inventory": [],
+          "color": "#FF6B6B",
+          "isAlive": true,
+          "lastThought": "I'm in a new place! I see a bush right next to me. I should gather some resources so I can eventually build something and make sure I have food for later.",
+          "lastAction": {
+            "type": "gather",
+            "direction": "left"
+          }
+        },
+        "agent_2": {
+          "id": "agent_2",
+          "name": "Rex",
+          "position": {
+            "x": 15,
+            "y": 6
+          },
+          "hunger": 100,
+          "inventory": [],
+          "color": "#4ECDC4",
+          "isAlive": true,
+          "lastThought": "I am Rex, and my priority is to survive and gather resources. I see several berry bushes nearby. There is one immediately to my right, and players Zara and Nova are close to my left. I will gather the bush to my right to start building my inventory.",
+          "lastAction": {
+            "type": "gather",
+            "direction": "right"
+          }
+        },
+        "agent_3": {
+          "id": "agent_3",
+          "name": "Zara",
+          "position": {
+            "x": 14,
+            "y": 6
+          },
+          "hunger": 100,
+          "inventory": [],
+          "color": "#FFE66D",
+          "isAlive": true,
+          "lastThought": "I see Nova and Rex nearby. I'm curious about them and this place, so I'll start by introducing myself.",
+          "lastAction": {
+            "type": "speak",
+            "message": "Hello Nova and Rex! I'm Zara. I was just about to explore these bushes; do you know if they have berries?"
+          }
+        },
+        "agent_4": {
+          "id": "agent_4",
+          "name": "Nova",
+          "position": {
+            "x": 14,
+            "y": 5
+          },
+          "hunger": 100,
+          "inventory": [],
+          "color": "#95E1D3",
+          "isAlive": true,
+          "lastThought": "I see stone to my north and bushes to my northwest. I'll move towards the stone at (14, 3) to begin gathering materials efficiently.",
+          "lastAction": {
+            "type": "move",
+            "direction": "up"
+          }
+        }
+      },
+      "messages": [],
+      "config": {
+        "gridWidth": 20,
+        "gridHeight": 20,
+        "visionRadius": 5,
+        "inventorySize": 5,
+        "hungerDepletionPerTurn": 2,
+        "hitDamage": 20,
+        "berryHungerRestore": 30,
+        "maxHunger": 100
+      }
+    },
+    {
+      "turn": 1,
+      "grid": {
+        "width": 20,
+        "height": 20,
+        "cells": [
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            }
+          ],
+          [
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "berry_bush"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": "wood"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": null
+            },
+            {
+              "terrain": "grass",
+              "block": "stone"
+            }
+          ]
+        ]
+      },
+      "agents": {
+        "agent_1": {
+          "id": "agent_1",
+          "name": "Aria",
+          "position": {
+            "x": 19,
+            "y": 0
+          },
+          "hunger": 98,
+          "inventory": [
+            "berry"
+          ],
+          "color": "#FF6B6B",
+          "isAlive": true,
+          "lastThought": "I'm in a new place! I see a bush right next to me. I should gather some resources so I can eventually build something and make sure I have food for later.",
+          "lastAction": {
+            "type": "gather",
+            "direction": "left"
+          }
+        },
+        "agent_2": {
+          "id": "agent_2",
+          "name": "Rex",
+          "position": {
+            "x": 15,
+            "y": 6
+          },
+          "hunger": 98,
+          "inventory": [
+            "berry"
+          ],
+          "color": "#4ECDC4",
+          "isAlive": true,
+          "lastThought": "I am Rex, and my priority is to survive and gather resources. I see several berry bushes nearby. There is one immediately to my right, and players Zara and Nova are close to my left. I will gather the bush to my right to start building my inventory.",
+          "lastAction": {
+            "type": "gather",
+            "direction": "right"
+          }
+        },
+        "agent_3": {
+          "id": "agent_3",
+          "name": "Zara",
+          "position": {
+            "x": 14,
+            "y": 6
+          },
+          "hunger": 98,
+          "inventory": [],
+          "color": "#FFE66D",
+          "isAlive": true,
+          "lastThought": "I see Nova and Rex nearby. I'm curious about them and this place, so I'll start by introducing myself.",
+          "lastAction": {
+            "type": "speak",
+            "message": "Hello Nova and Rex! I'm Zara. I was just about to explore these bushes; do you know if they have berries?"
+          }
+        },
+        "agent_4": {
+          "id": "agent_4",
+          "name": "Nova",
+          "position": {
+            "x": 14,
+            "y": 4
+          },
+          "hunger": 98,
+          "inventory": [],
+          "color": "#95E1D3",
+          "isAlive": true,
+          "lastThought": "I see stone to my north and bushes to my northwest. I'll move towards the stone at (14, 3) to begin gathering materials efficiently.",
+          "lastAction": {
+            "type": "move",
+            "direction": "up"
+          }
+        }
+      },
+      "messages": [
+        {
+          "turn": 1,
+          "agentId": "agent_3",
+          "agentName": "Zara",
+          "content": "Hello Nova and Rex! I'm Zara. I was just about to explore these bushes; do you know if they have berries?",
+          "position": {
+            "x": 14,
+            "y": 6
+          }
+        }
+      ],
+      "config": {
+        "gridWidth": 20,
+        "gridHeight": 20,
+        "visionRadius": 5,
+        "inventorySize": 5,
+        "hungerDepletionPerTurn": 2,
+        "hitDamage": 20,
+        "berryHungerRestore": 30,
+        "maxHunger": 100
+      }
+    }
+  ]
+}

@@ -9,10 +9,11 @@ Track all jobs and their status.
 | 003 | [AI Player (Gemini)](./003-ai-player.md) | ai-players | ✅ complete |
 | 004 | [Server Orchestrator](./004-server-orchestrator.md) | server | ✅ complete |
 | 005 | [Web Integration](./005-web-integration.md) | web | ✅ complete |
-| 006 | [Replay File System](./006-replay-file-system.md) | shared/replay | 🔴 not started |
-| 007 | [CLI Simulation Runner](./007-cli-simulation-runner.md) | cli | 🔴 not started |
-| 008 | [Replay Viewer - Main Menu](./008-replay-viewer-menu.md) | web | 🔴 not started |
-| 009 | [Replay Viewer - Playback Controls](./009-replay-viewer-playback.md) | web | 🔴 not started |
+| 006 | [Replay File System](./006-replay-file-system.md) | shared/replay | ✅ complete |
+| 007 | [CLI Simulation Runner](./007-cli-simulation-runner.md) | cli | ✅ complete |
+| 008 | [Replay Viewer - Main Menu](./008-replay-viewer-menu.md) | web | ✅ complete |
+| 009 | [Replay Viewer - Playback Controls](./009-replay-viewer-playback.md) | web | ✅ complete |
+| 010 | [Persistent Agent Memory](./010-persistent-agent-memory.md) | ai-players | 🔴 not started |
 
 ---
 
@@ -23,6 +24,10 @@ Track all jobs and their status.
 - 003: AI Player (Gemini)
 - 004: Server Orchestrator
 - 005: Web Integration
+- 006: Replay File System
+- 007: CLI Simulation Runner
+- 008: Replay Viewer - Main Menu
+- 009: Replay Viewer - Playback Controls
 
 ## In Progress
 
@@ -30,8 +35,5 @@ Track all jobs and their status.
 
 ## Not Started
 
-- 006: Replay File System
-- 007: CLI Simulation Runner
-- 008: Replay Viewer - Main Menu
-- 009: Replay Viewer - Playback Controls
+- 010: Persistent Agent Memory
 

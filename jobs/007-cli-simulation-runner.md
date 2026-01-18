@@ -1,7 +1,7 @@
 # Job: CLI Simulation Runner
 
 **Component**: cli  
-**Status**: 🔴 not started
+**Status**: 🟢 completed
 
 ## Context
 
@@ -165,4 +165,22 @@ process.on('SIGTERM', handleShutdown);
 
 ## 🎯 Completion Report
 
-_To be filled by implementer upon completion._
+### Implemented Features
+- **SimulationRunner**: Core logic in `src/cli/runner.ts` that manages the game loop independently of the web server.
+- **CLI Entry Point**: `src/cli/simulate.ts` parses arguments using `commander` and sets up the environment (dotenv).
+- **Graceful Shutdown**: Caught `SIGINT` and `SIGTERM` to ensure `replayWriter.finalize()` is called, preventing corrupted JSON files.
+- **AI Integration**: Seamlessly switches between Gemini AI and Dummy AI based on environment variables or CLI flags.
+
+### Decisions & Rationale
+- **Class-based Runner**: Encapsulated the simulation logic in a `SimulationRunner` class to make it easier to test and reuse (compared to a flat script).
+- **Incremental Writing**: leverged the `ReplayWriter` (from Job 006) to save the state after every turn, ensuring no data loss if the process is killed.
+
+### Problems & Solutions
+- **Type Mismatches**: Encountered several TypeScript errors due to outdated assumptions about `GameConfig` and `AgentIdentity` properties.
+  - *Fix*: Aligned the runner implementation with `src/shared/types.ts` (e.g., using `gridWidth` instead of `width`).
+- **Input Interference**: Initial manual tests showed some terminal output overlapping.
+  - *Fix*: Used `process.stdout.write` with carriage returns for turn progress to keep the console clean.
+
+### Verification Results
+- **Automated**: `src/cli/cli.test.ts` passes, verifying turn execution and replay file generation.
+- **Manual**: Successfully ran simulations with various agent counts and grid sizes. Replay files are correctly generated in the `./replays` directory.

@@ -1,7 +1,9 @@
 import { GameState, Action, AgentId, AgentIdentity } from "../shared/types.js";
 import { computeNextState, generateAgentView } from "../engine/index.js";
 import { getAction as getAIAction } from "../ai-players/index.js";
-import { getAction as getDummyAction } from "../ai-players/dummy.js";
+import { getAction as getDummyAction, clearDummyMemory } from "../ai-players/dummy.js";
+import { clearAllChats } from "../ai-players/sessions.js";
+import { ReplayWriter } from "../replay/writer.js";
 
 /**
  * Game loop orchestration
@@ -21,6 +23,7 @@ let currentState: GameState;
 let agentIdentities: Map<AgentId, AgentIdentity>;
 let isRunning = false;
 let timeoutId: NodeJS.Timeout | null = null;
+let replayWriter: ReplayWriter | null = null;
 
 /**
  * Start the game loop
@@ -33,9 +36,17 @@ export function startLoop(
     // Stop existing loop if any
     stopLoop();
 
+    // Clear all AI chat sessions for fresh start
+    clearAllChats();
+    clearDummyMemory();
+
     currentState = initialState;
     agentIdentities = identities;
     isRunning = true;
+
+    // Initialize replay writer
+    replayWriter = new ReplayWriter(currentState.config);
+    replayWriter.initialize(currentState);
 
     console.log(`[Game Loop] Starting with turn duration: ${TURN_DURATION_MS}ms`);
     console.log(`[Game Loop] Initial agents: ${Array.from(agentIdentities.values()).map(a => a.name).join(", ")}`);
@@ -52,6 +63,10 @@ export function stopLoop(): void {
     if (timeoutId) {
         clearTimeout(timeoutId);
         timeoutId = null;
+    }
+    if (replayWriter) {
+        replayWriter.finalize();
+        replayWriter = null;
     }
     console.log("[Game Loop] Loop stopped");
 }
@@ -119,6 +134,11 @@ async function runTurn(broadcast: BroadcastFunction): Promise<void> {
 
         // 6. Broadcast the new state
         broadcast(currentState);
+
+        // 6.5 Append to replay
+        if (replayWriter) {
+            replayWriter.appendTurn(currentState);
+        }
 
         // 7. Log turn summary
         const turnDuration = Date.now() - turnStart;

@@ -1,7 +1,7 @@
 # Job: Replay File System
 
 **Component**: shared/replay  
-**Status**: 🔴 not started
+**Status**: ✅ completed
 
 ## Context
 
@@ -100,14 +100,14 @@ export function checkCompatibility(metadata: ReplayMetadata): {
 
 ## Acceptance Criteria
 
-- [ ] Replay files can be written incrementally without data loss
-- [ ] Replay files can be read and parsed correctly
-- [ ] Engine version embedded in all replay files
-- [ ] Compatibility checking warns on version mismatches
-- [ ] Atomic writes prevent corrupted files on crash
-- [ ] Map serialization handled (GameState.agents is a Map)
-- [ ] All tests pass with good coverage
-- [ ] No lint errors
+- [x] Replay files can be written incrementally without data loss
+- [x] Replay files can be read and parsed correctly
+- [x] Engine version embedded in all replay files
+- [x] Compatibility checking warns on version mismatches
+- [x] Atomic writes prevent corrupted files on crash
+- [x] Map serialization handled (GameState.agents is a Map)
+- [x] All tests pass with good coverage
+- [x] No lint errors
 
 ## Notes
 
@@ -130,5 +130,19 @@ export function checkCompatibility(metadata: ReplayMetadata): {
 
 ## 🎯 Completion Report
 
-_To be filled by implementer upon completion._
+The replay file system has been fully implemented, providing a robust foundation for simulation playback.
+
+### Key Features
+- **ReplayWriter**: Supports atomic writes using `.tmp` files to ensure no corruption if the simulation crashes. It handles `Map` serialization by converting `GameState.agents` to plain objects.
+- **ReplayReader**: Efficiently loads replays and restores runtime types (like `Map`). Includes a version compatibility checker to warn about engine mismatches.
+- **Server Integration**: The game loop now automatically generates and updates replay files in the `./replays/` directory.
+
+### Technical Decisions
+- **Full State Snapshots**: For the MVP, we store full snapshots per turn. While this increases file size, it simplifies navigation (jump to any turn) and implementation.
+- **Atomic Saves**: We re-write the JSON file on every turn update using a write-rename pattern. This guarantees that the last successful turn is always preserved on disk.
+
+### Challenges Overcome
+- **Build System**: Resolved `tsc` errors related to unused imports that were blocking the server launch.
+- **Port Management**: Handled `EADDRINUSE` errors by identifying and terminating lingering server processes.
+- **Serialization**: Created dedicated `SerializedAgent` and `ReplayTurn` types to bridge the gap between runtime `Map` structures and JSON-serializable objects.
 

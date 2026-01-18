@@ -204,4 +204,56 @@ useEffect(() => {
 
 ## 🎯 Completion Report
 
-_To be filled by implementer upon completion._
+**Status**: ✅ Complete  
+**Date**: 2026-01-18
+
+### What Was Implemented
+
+1. **ReplayViewer.tsx** (`src/web/src/pages/ReplayViewer.tsx`)
+   - Loads replay files via `/api/replays/:filename` API
+   - Converts serialized agent objects back to Map for GameState compatibility
+   - Manages `currentTurn`, `isPlaying` state
+   - Auto-play with 1 second interval, auto-stops at final turn
+   - Keyboard shortcuts: `←`/`→` for prev/next, `Space` for play/pause, `Home`/`End` for first/last
+
+2. **PlaybackControls.tsx** (`src/web/src/components/PlaybackControls.tsx`)
+   - Navigation buttons: First (⏮), Previous (◀), Play/Pause (▶/⏸), Next (▶), Last (⏭)
+   - Clickable progress bar with seek functionality
+   - Turn counter display
+   - Proper disabled states at boundaries
+
+3. **ReplayViewer.css** (`src/web/src/styles/ReplayViewer.css`)
+   - Modern dark theme styling matching existing app
+   - Gradient play button with shadow effects
+   - Smooth progress bar with draggable thumb
+   - Responsive layout for mobile
+   - Keyboard hints panel
+
+4. **App.tsx** updated to wire `/replay/:filename` route to `ReplayViewer`
+
+### Problems Encountered & Solutions
+
+| Problem | Cause | Solution |
+|---------|-------|----------|
+| API returning 500 error | `reader.ts` was converting agents to `Map`, which can't be serialized to JSON | Removed Map conversion - kept agents as objects and let frontend convert |
+| Unused import warning | `ReplayTurn` was imported but no longer used after fix | Removed unused import |
+| React hook dependency warning | `selectedAgent` in useEffect dependency caused re-render loop | Used functional setState pattern with `prev` to check agent by ID |
+
+### Decisions Taken
+
+- **Agent conversion**: Done in frontend (`turnToGameState`) rather than backend to keep API responses as pure JSON
+- **Progress bar**: Used percentage-based positioning for thumb to handle any number of turns
+- **Keyboard shortcuts**: Added `e.preventDefault()` to avoid page scrolling on Space/Arrow keys
+- **Component reuse**: Reused `Grid`, `Agent`, `AgentInspector` from live view to maintain consistency
+- **Messages panel**: Shows messages for current turn only, with turn label in header
+
+### Files Changed
+
+| File | Change |
+|------|--------|
+| `src/web/src/pages/ReplayViewer.tsx` | NEW - Main replay viewer page |
+| `src/web/src/components/PlaybackControls.tsx` | NEW - Playback control bar |
+| `src/web/src/styles/ReplayViewer.css` | NEW - Styling |
+| `src/web/src/App.tsx` | MODIFIED - Added route |
+| `src/replay/reader.ts` | MODIFIED - Fixed JSON serialization bug |
+

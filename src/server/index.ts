@@ -6,6 +6,7 @@ import { WebSocket } from "ws";
 import { createInitialState } from "../engine/index.js";
 import { initializeWebSocket, broadcastState, sendStateToClient } from "./websocket.js";
 import { startLoop, getCurrentState } from "./game-loop.js";
+import { listReplays, loadReplay } from "../replay/reader.js";
 
 /**
  * Server entry point
@@ -65,6 +66,28 @@ function generateAgentIdentities(count: number): Map<AgentId, AgentIdentity> {
 
 // Global state for identities
 let agentIdentities = generateAgentIdentities(parseInt(process.env.AGENT_COUNT || "4", 10));
+
+// Replay API
+app.get("/api/replays", async (_req: Request, res: Response) => {
+    try {
+        const replays = await listReplays("./replays");
+        res.json(replays);
+    } catch (error) {
+        console.error("[Server] Failed to list replays:", error);
+        res.status(500).json({ error: "Failed to list replays" });
+    }
+});
+
+app.get("/api/replays/:filename", async (req: Request, res: Response) => {
+    try {
+        const { filename } = req.params;
+        const replay = await loadReplay(`./replays/${filename}`);
+        res.json(replay);
+    } catch (error) {
+        console.error(`[Server] Failed to load replay ${req.params.filename}:`, error);
+        res.status(404).json({ error: "Replay not found" });
+    }
+});
 
 // Restart endpoint
 app.post("/api/restart", (req: Request, res: Response) => {

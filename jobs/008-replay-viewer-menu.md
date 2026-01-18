@@ -189,4 +189,38 @@ Run 'npm run simulate' to create one.
 
 ## 🎯 Completion Report
 
-_To be filled by implementer upon completion._
+### Features Implemented
+1.  **Web UI Components**:
+    - `MainMenu.tsx`: Fetches and displays the list of replays with loading/error states.
+    - `ReplayCard.tsx`: Displays metadata, status icons, and version compatibility warnings.
+    - `MainMenu.css`: Premium dark-themed styling with hover animations and responsive grid.
+2.  **Routing**:
+    - Integrated `react-router-dom`.
+    - Routes for `/` (Main Menu), `/live` (WebSocket visualization), and `/replay/:filename` (playback placeholder).
+3.  **Standalone Replay Serving**:
+    - Created symlink: `src/web/public/replays` → `../../../replays`
+    - Implemented Vite plugin in `vite.config.ts` to handle `/api/replays` listing endpoint
+    - Individual replay files served directly as static files
+
+### Technical Decisions & Challenges
+-   **Standalone Architecture**: Initially created a separate `replay-server.ts`, but refactored to use a Vite plugin + symlink approach for simpler development workflow. This means **only the Vite dev server needs to run** for replay viewing.
+-   **Symlink Path Resolution**: The symlink from `src/web/public/replays` required `../../../replays` (3 levels up) to reach the project root.
+-   **ES Module Compatibility**: Used `import.meta.url` with `fileURLToPath` to polyfill `__dirname` in the Vite config since it runs as an ES module.
+-   **Version Compatibility**: Implemented logic to compare replay `engineVersion` with current `ENGINE_VERSION`, providing visual warnings for mismatches.
+-   **Type Safety**: Used type-only imports to satisfy strict TypeScript requirements.
+
+### How to Run
+**Replay viewing (standalone)**:
+```bash
+cd src/web && npm run dev
+```
+Navigate to http://localhost:5173/ - replays are served directly by Vite.
+
+**Live simulation + replay viewing**:
+```bash
+# Terminal 1: Backend with game loop
+npm run dev
+
+# Terminal 2: Frontend
+cd src/web && npm run dev
+```

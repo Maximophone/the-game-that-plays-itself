@@ -1,4 +1,4 @@
-import { Action, AgentView, AgentIdentity, Direction } from "../shared/types.js";
+import { Action, AgentView, AgentIdentity, Direction, AgentId } from "../shared/types.js";
 
 /**
  * Dummy AI Player - Makes random decisions without calling any LLM API
@@ -6,6 +6,18 @@ import { Action, AgentView, AgentIdentity, Direction } from "../shared/types.js"
  */
 
 const DIRECTIONS: Direction[] = ["up", "down", "left", "right"];
+
+// Track turn counts per agent (for consistent interface with real AI sessions)
+const turnCounts = new Map<AgentId, number>();
+
+/**
+ * Clear dummy memory (turn counts).
+ * Called when simulation resets for consistent interface with chat sessions.
+ */
+export function clearDummyMemory(): void {
+    turnCounts.clear();
+}
+
 
 function randomChoice<T>(array: T[]): T {
     return array[Math.floor(Math.random() * array.length)];
