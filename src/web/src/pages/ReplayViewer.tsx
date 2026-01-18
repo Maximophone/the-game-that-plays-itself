@@ -32,9 +32,9 @@ const ReplayViewer: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [selectedAgent, setSelectedAgent] = useState<AgentType | null>(null);
+    const [activeTab, setActiveTab] = useState<'inspector' | 'messages' | 'shortcuts'>('messages');
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
-    const cellSize = 40;
 
     // Load replay file
     useEffect(() => {
@@ -172,6 +172,41 @@ const ReplayViewer: React.FC = () => {
         });
     }, [currentTurn, replay]);
 
+    // Grid Scaling Logic
+    const gridContainerRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        if (!replay) return;
+        const turn = replay.turns[currentTurn];
+        if (!turn) return;
+
+        const handleResize = () => {
+            if (!gridContainerRef.current) return;
+            const container = gridContainerRef.current;
+            const horizontalPadding = 64; // total padding
+            const verticalPadding = 64;   // total padding
+
+            const availableWidth = container.clientWidth - horizontalPadding;
+            const availableHeight = container.clientHeight - verticalPadding;
+
+            const gridWidth = turn.grid.width;
+            const gridHeight = turn.grid.height;
+
+            const cellW = (availableWidth - (gridWidth - 1) * 1) / gridWidth;
+            const cellH = (availableHeight - (gridHeight - 1) * 1) / gridHeight;
+
+            const newCellSize = Math.max(20, Math.floor(Math.min(40, cellW, cellH)));
+
+            document.documentElement.style.setProperty('--cell-size', `${newCellSize}px`);
+        };
+
+        handleResize();
+        const observer = new ResizeObserver(handleResize);
+        if (gridContainerRef.current) observer.observe(gridContainerRef.current);
+
+        return () => observer.disconnect();
+    }, [replay, currentTurn]);
+
+
     // Loading state
     if (loading) {
         return (
@@ -220,17 +255,21 @@ const ReplayViewer: React.FC = () => {
 
             <div className="replay-content">
                 <div className="grid-section">
-                    <div className="grid-wrapper">
-                        <Grid grid={gameState.grid} />
-                        <div className="agent-layer">
-                            {Array.from(gameState.agents.values()).map((agent) => (
-                                <Agent
-                                    key={agent.id}
-                                    agent={agent}
-                                    cellSize={cellSize}
-                                    onClick={() => setSelectedAgent(agent)}
-                                />
-                            ))}
+                    <div className="grid-container" ref={gridContainerRef}>
+                        <div className="grid-wrapper">
+                            <Grid grid={gameState.grid} />
+                            <div className="agent-layer">
+                                {Array.from(gameState.agents.values()).map((agent) => (
+                                    <Agent
+                                        key={agent.id}
+                                        agent={agent}
+                                        onClick={() => {
+                                            setSelectedAgent(agent);
+                                            setActiveTab('inspector');
+                                        }}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </div>
 
@@ -247,46 +286,82 @@ const ReplayViewer: React.FC = () => {
                     />
                 </div>
 
-                {selectedAgent && (
-                    <AgentInspector
-                        agent={selectedAgent}
-                        onClose={() => setSelectedAgent(null)}
-                    />
-                )}
-
                 <div className="side-panel">
-                    <div className="messages-panel">
-                        <h2>Messages (Turn {currentTurn + 1})</h2>
-                        <div className="messages-list">
-                            {gameState.messages.length === 0 ? (
-                                <div className="no-messages">No messages this turn...</div>
-                            ) : (
-                                gameState.messages.map((msg, index) => (
-                                    <div key={index} className="message">
-                                        <div className="message-header">
-                                            <span className="message-agent">{msg.agentName}</span>
-                                            <span className="message-turn">Turn {msg.turn}</span>
-                                        </div>
-                                        <div className="message-content">{msg.content}</div>
-                                        <div className="message-position">
-                                            at ({msg.position.x}, {msg.position.y})
-                                        </div>
-                                    </div>
-                                ))
-                            )}
-                            <div ref={messagesEndRef} />
-                        </div>
-                    </div>
+                    <nav className="sidebar-tabs">
+                        <button
+                            className={`tab-button ${activeTab === 'inspector' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('inspector')}
+                        >
+                            Inspector
+                        </button>
+                        <button
+                            className={`tab-button ${activeTab === 'messages' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('messages')}
+                        >
+                            Messages
+                        </button>
+                        <button
+                            className={`tab-button ${activeTab === 'shortcuts' ? 'active' : ''}`}
+                            onClick={() => setActiveTab('shortcuts')}
+                        >
+                            Shortcuts
+                        </button>
+                    </nav>
 
-                    <div className="keyboard-hints">
-                        <h3>Keyboard Shortcuts</h3>
-                        <div className="hint-grid">
-                            <kbd>←</kbd><span>Previous</span>
-                            <kbd>→</kbd><span>Next</span>
-                            <kbd>Space</kbd><span>Play/Pause</span>
-                            <kbd>Home</kbd><span>First</span>
-                            <kbd>End</kbd><span>Last</span>
-                        </div>
+                    <div className="tab-content">
+                        {activeTab === 'inspector' && (
+                            <div className="tab-panel">
+                                {selectedAgent ? (
+                                    <AgentInspector agent={selectedAgent} />
+                                ) : (
+                                    <div className="inspector-placeholder">
+                                        <p>Select an agent on the grid to view details</p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {activeTab === 'messages' && (
+                            <div className="tab-panel">
+                                <div className="messages-panel">
+                                    <h2>Turn {currentTurn + 1} Messages</h2>
+                                    <div className="messages-list">
+                                        {gameState.messages.length === 0 ? (
+                                            <div className="no-messages">No messages this turn...</div>
+                                        ) : (
+                                            gameState.messages.map((msg, index) => (
+                                                <div key={index} className="message">
+                                                    <div className="message-header">
+                                                        <span className="message-agent">{msg.agentName}</span>
+                                                        <span className="message-turn">Turn {msg.turn}</span>
+                                                    </div>
+                                                    <div className="message-content">{msg.content}</div>
+                                                    <div className="message-position">
+                                                        at ({msg.position.x}, {msg.position.y})
+                                                    </div>
+                                                </div>
+                                            ))
+                                        )}
+                                        <div ref={messagesEndRef} />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {activeTab === 'shortcuts' && (
+                            <div className="tab-panel">
+                                <div className="keyboard-hints">
+                                    <h3>Keyboard Shortcuts</h3>
+                                    <div className="hint-grid">
+                                        <kbd>←</kbd><span>Previous</span>
+                                        <kbd>→</kbd><span>Next</span>
+                                        <kbd>Space</kbd><span>Play/Pause</span>
+                                        <kbd>Home</kbd><span>First</span>
+                                        <kbd>End</kbd><span>Last</span>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

@@ -44,7 +44,9 @@ const Grid: React.FC<GridProps> = ({ grid }) => {
     const gridStyle: React.CSSProperties = {
         gridTemplateColumns: `repeat(${grid.width}, var(--cell-size))`,
         gridTemplateRows: `repeat(${grid.height}, var(--cell-size))`,
-    };
+        '--grid-width': grid.width,
+        '--grid-height': grid.height,
+    } as React.CSSProperties;
 
     return (
         <div className="grid" style={gridStyle}>

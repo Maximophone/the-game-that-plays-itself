@@ -13,7 +13,10 @@ Track all jobs and their status.
 | 007 | [CLI Simulation Runner](./007-cli-simulation-runner.md) | cli | ✅ complete |
 | 008 | [Replay Viewer - Main Menu](./008-replay-viewer-menu.md) | web | ✅ complete |
 | 009 | [Replay Viewer - Playback Controls](./009-replay-viewer-playback.md) | web | ✅ complete |
-| 010 | [Persistent Agent Memory](./010-persistent-agent-memory.md) | ai-players | 🔴 not started |
+| 010 | [Persistent Agent Memory](./010-persistent-agent-memory.md) | ai-players | ✅ complete |
+| 011 | [UI Layout and Positioning Fixes](./011-ui-layout-fixes.md) | web | ✅ complete |
+| 012 | [Game Mechanics v2 (Food & Inventory)](./012-game-mechanics-v2.md) | engine, shared, web | 🔴 not started |
+| 013 | [Looting Mechanics](./013-looting-mechanics.md) | engine | 🔴 not started |
 
 ---
 
@@ -28,6 +31,8 @@ Track all jobs and their status.
 - 007: CLI Simulation Runner
 - 008: Replay Viewer - Main Menu
 - 009: Replay Viewer - Playback Controls
+- 010: Persistent Agent Memory
+- 011: UI Layout and Positioning Fixes
 
 ## In Progress
 
@@ -35,5 +40,6 @@ Track all jobs and their status.
 
 ## Not Started
 
-- 010: Persistent Agent Memory
+- 012: Game Mechanics v2 (Food & Inventory)
+- 013: Looting Mechanics
 

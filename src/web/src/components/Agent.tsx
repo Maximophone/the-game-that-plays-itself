@@ -3,16 +3,17 @@ import type { Agent as AgentType } from '../../../shared/types';
 
 interface AgentProps {
     agent: AgentType;
-    cellSize: number;
     onClick?: () => void;
 }
 
-const Agent: React.FC<AgentProps> = ({ agent, cellSize, onClick }) => {
+const Agent: React.FC<AgentProps> = ({ agent, onClick }) => {
     if (!agent.isAlive) return null;
 
     const style: React.CSSProperties = {
-        left: `${agent.position.x * cellSize}px`,
-        top: `${agent.position.y * cellSize}px`,
+        left: `calc(${agent.position.x} * (var(--cell-size) + var(--grid-gap)))`,
+        top: `calc(${agent.position.y} * (var(--cell-size) + var(--grid-gap)))`,
+        width: 'var(--cell-size)',
+        height: 'var(--cell-size)',
         backgroundColor: agent.color,
         cursor: onClick ? 'pointer' : 'default',
     };
