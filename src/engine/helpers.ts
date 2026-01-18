@@ -179,3 +179,47 @@ export function canBuildAt(cell: Cell): boolean {
 export function isFood(blockType: BlockType): boolean {
     return blockType === "berry";
 }
+
+/**
+ * Transfer inventory from one agent to another with prioritization and capacity limits.
+ * Berries are prioritized. Items that don't fit are lost.
+ */
+export function transferInventory(
+    from: { inventory: { type: BlockType; count: number }[] },
+    to: { inventory: { type: BlockType; count: number }[] },
+    inventorySize: number
+): void {
+    // Collect all items to transfer
+    const itemsToTransfer = [...from.inventory];
+
+    // Sort: berries first, then others
+    itemsToTransfer.sort((a, b) => {
+        if (isFood(a.type) && !isFood(b.type)) return -1;
+        if (!isFood(a.type) && isFood(b.type)) return 1;
+        return 0;
+    });
+
+    for (const item of itemsToTransfer) {
+        let remaining = item.count;
+
+        // 1. Try to fill existing stacks in 'to' inventory
+        for (const slot of to.inventory) {
+            if (slot.type === item.type && slot.count < 10) {
+                const space = 10 - slot.count;
+                const toAdd = Math.min(space, remaining);
+                slot.count += toAdd;
+                remaining -= toAdd;
+            }
+            if (remaining <= 0) break;
+        }
+
+        // 2. If still remaining and have empty slots, create new slots
+        while (remaining > 0 && to.inventory.length < inventorySize) {
+            const toAdd = Math.min(10, remaining);
+            to.inventory.push({ type: item.type, count: toAdd });
+            remaining -= toAdd;
+        }
+
+        // Remaining items that didn't fit are implicitly lost
+    }
+}

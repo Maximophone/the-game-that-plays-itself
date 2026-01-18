@@ -70,7 +70,7 @@ describe("Replay System", () => {
     });
 
     test("checkCompatibility should handle version mismatches", () => {
-        const perfectMatch = { engineVersion: "0.2.0" } as any;
+        const perfectMatch = { engineVersion: "0.2.1" } as any;
         expect(checkCompatibility(perfectMatch).compatible).toBe(true);
         expect(checkCompatibility(perfectMatch).warning).toBeUndefined();
 

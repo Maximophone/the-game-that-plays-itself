@@ -1,7 +1,7 @@
 # Job: Looting Mechanics
 
 **Component**: engine  
-**Status**: 🔴 not started
+**Status**: 🟢 completed
 
 ## Context
 
@@ -61,15 +61,27 @@ You will need to update the `hit` action processing block in `computeNextState`:
 
 ## Acceptance Criteria
 
-- [ ] Killing an agent transfers their items to the killer.
-- [ ] Berries are prioritized if space is limited.
-- [ ] Killer's inventory obeys slot/stack limits (from Job 012).
-- [ ] Overlapping hits correctly award loot to the killing blow.
-- [ ] Engine version incremented in `src/shared/version.ts`.
-- [ ] All tests pass.
+- [x] Killing an agent transfers their items to the killer.
+- [x] Berries are prioritized if space is limited.
+- [x] Killer's inventory obeys slot/stack limits (from Job 012).
+- [x] Overlapping hits correctly award loot to the killing blow.
+- [x] Engine version incremented in `src/shared/version.ts`.
+- [x] All tests pass.
 
 ---
 
 ## 🎯 Completion Report
 
-_To be filled by implementer upon completion._
+Implemented looting mechanics for "The Game That Plays Itself".
+
+### Summary of Changes
+- **Loot Transfer**: Added `transferInventory` helper in `helpers.ts` to handle inventory transfer between agents.
+- **Priority Looting**: Berries are prioritized during transfer to ensure the killer's survival.
+- **Capacity Handing**: Transfer respects the killer's `inventorySize` and stack limits (10 items per slot). Items that don't fit are lost.
+- **Combat Integration**: Updated `hit` action logic in `actions.ts` to trigger `transferInventory` when a killing blow is delivered.
+- **AI Guidance**: Updated the system prompt in `prompt.ts` to inform AI players about the looting mechanic.
+- **Version Bump**: Incremented `ENGINE_VERSION` to `0.2.1`.
+
+### Verification Results
+- All tests passed, including a new test case `looting: transfers inventory on kill` in `engine.test.ts`.
+- Verified simulation stability with the new mechanics.

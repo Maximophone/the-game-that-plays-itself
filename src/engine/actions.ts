@@ -19,6 +19,7 @@ import {
     gatherRemovesBlock,
     randomChoice,
     isFood,
+    transferInventory,
 } from "./helpers.js";
 import { validateAction } from "./validation.js";
 
@@ -254,6 +255,8 @@ export function computeNextState(
             ) {
                 targetAgent.hunger = Math.max(0, targetAgent.hunger - state.config.hitDamage);
                 if (targetAgent.hunger <= 0) {
+                    // Loot transfer before target is marked as dead
+                    transferInventory(targetAgent, agent, state.config.inventorySize);
                     targetAgent.isAlive = false;
                 }
                 break;

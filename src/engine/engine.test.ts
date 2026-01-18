@@ -485,6 +485,29 @@ describe("computeNextState", () => {
         expect(state.turn).toBe(originalTurn);
         expect(state.agents.get("agent-1")!.hunger).toBe(originalAgentHunger);
     });
+
+    it("looting: transfers inventory on kill", () => {
+        const agent2 = state.agents.get("agent-2")!;
+
+        agent2.position = { x: 5, y: 4 }; // Above agent-1
+        agent2.hunger = 10; // Lethal hit coming (hitDamage is 20)
+        agent2.inventory = [
+            { type: "berry", count: 5 },
+            { type: "stone", count: 2 }
+        ];
+
+        const actions = new Map<string, Action>();
+        actions.set("agent-1", { type: "hit", direction: "up" });
+
+        const newState = computeNextState(state, actions);
+
+        const updatedAgent1 = newState.agents.get("agent-1")!;
+        const updatedAgent2 = newState.agents.get("agent-2")!;
+
+        expect(updatedAgent2.isAlive).toBe(false);
+        expect(updatedAgent1.inventory).toContainEqual({ type: "berry", count: 5 });
+        expect(updatedAgent1.inventory).toContainEqual({ type: "stone", count: 2 });
+    });
 });
 
 // =============================================================================

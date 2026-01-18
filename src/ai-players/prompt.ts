@@ -15,6 +15,7 @@ GAME RULES:
 - You can build structures by placing blocks from your inventory.
 - You can speak to other agents within your vision radius.
 - You can hit adjacent agents to damage their hunger.
+- If you kill another agent, you get the contents of their inventory.
 - You can eat berries to restore hunger.
 - You cannot move through wood and stone blocks.
 
