@@ -68,9 +68,10 @@ const AgentInspector: React.FC<AgentInspectorProps> = ({ agent }) => {
                         {agent.inventory.length === 0 ? (
                             <div className="empty-inventory">Empty</div>
                         ) : (
-                            agent.inventory.map((item, idx) => (
+                            agent.inventory.map((slot, idx) => (
                                 <div key={idx} className="inventory-item">
-                                    {item}
+                                    <span className="inventory-type">{slot.type}</span>
+                                    {slot.count > 1 && <span className="inventory-count">x{slot.count}</span>}
                                 </div>
                             ))
                         )}

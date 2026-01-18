@@ -133,6 +133,7 @@ export function cloneGrid(grid: Grid): Grid {
             row.map((cell) => ({
                 terrain: cell.terrain,
                 block: cell.block,
+                berriesRemaining: cell.berriesRemaining,
             }))
         ),
     };

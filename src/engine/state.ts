@@ -109,7 +109,9 @@ function scatterResources(grid: Grid): void {
     // Place berry bushes
     for (let i = 0; i < berryBushCount && index < shuffled.length; i++, index++) {
         const pos = shuffled[index];
-        grid.cells[pos.y][pos.x].block = "berry_bush";
+        const cell = grid.cells[pos.y][pos.x];
+        cell.block = "berry_bush";
+        cell.berriesRemaining = Math.floor(Math.random() * 5) + 3; // 3-7 berries
     }
 }
 

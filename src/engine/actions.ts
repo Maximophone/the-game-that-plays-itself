@@ -41,7 +41,10 @@ export function computeNextState(
     // Clone agents map (we'll mutate it)
     const newAgents = new Map<AgentId, Agent>();
     for (const [id, agent] of state.agents) {
-        newAgents.set(id, { ...agent, inventory: [...agent.inventory] });
+        newAgents.set(id, {
+            ...agent,
+            inventory: agent.inventory.map((slot) => ({ ...slot })),
+        });
     }
 
     // Copy messages array
@@ -153,9 +156,25 @@ export function computeNextState(
         if (!winner) continue;
 
         const gathered = getGatherYield(cell.block);
-        winner.inventory.push(gathered);
 
-        if (gatherRemovesBlock(cell.block)) {
+        // Inventory stacking logic
+        const existingSlot = winner.inventory.find(
+            (slot) => slot.type === gathered && slot.count < 10
+        );
+
+        if (existingSlot) {
+            existingSlot.count++;
+        } else {
+            winner.inventory.push({ type: gathered, count: 1 });
+        }
+
+        // Berry bush depletion
+        if (cell.block === "berry_bush" && cell.berriesRemaining !== undefined) {
+            cell.berriesRemaining--;
+            if (cell.berriesRemaining <= 0) {
+                cell.block = null;
+            }
+        } else if (gatherRemovesBlock(cell.block)) {
             cell.block = null;
         }
     }
@@ -188,10 +207,17 @@ export function computeNextState(
         const agent = newAgents.get(winner.agentId);
         if (!agent) continue;
 
-        // Remove block from inventory
-        const blockIndex = agent.inventory.indexOf(winner.block);
-        if (blockIndex !== -1) {
-            agent.inventory.splice(blockIndex, 1);
+        // Remove block from inventory (stacking aware)
+        const slotIndex = agent.inventory.findIndex(
+            (slot) => slot.type === winner.block && slot.count > 0
+        );
+
+        if (slotIndex !== -1) {
+            const slot = agent.inventory[slotIndex];
+            slot.count--;
+            if (slot.count === 0) {
+                agent.inventory.splice(slotIndex, 1);
+            }
             cell.block = winner.block;
         }
     }
@@ -241,10 +267,14 @@ export function computeNextState(
         const agent = newAgents.get(agentId);
         if (!agent || !agent.isAlive) continue;
 
-        // Find and remove food from inventory
-        const foodIndex = agent.inventory.findIndex((item) => isFood(item));
-        if (foodIndex !== -1) {
-            agent.inventory.splice(foodIndex, 1);
+        // Find and remove food from inventory (stacking aware)
+        const slotIndex = agent.inventory.findIndex((slot) => isFood(slot.type));
+        if (slotIndex !== -1) {
+            const slot = agent.inventory[slotIndex];
+            slot.count--;
+            if (slot.count === 0) {
+                agent.inventory.splice(slotIndex, 1);
+            }
             agent.hunger = Math.min(
                 state.config.maxHunger,
                 agent.hunger + state.config.berryHungerRestore

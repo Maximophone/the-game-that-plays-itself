@@ -31,7 +31,7 @@ export async function getAction(view: AgentView, identity: AgentIdentity): Promi
     const { hunger, inventory } = view.self;
 
     // If very hungry and has food, eat
-    if (hunger < 30 && inventory.some(item => item === "berry")) {
+    if (hunger < 30 && inventory.some(slot => slot.type === "berry")) {
         console.log(`[Dummy AI] ${identity.name}: Eating (hunger ${hunger})`);
         return {
             action: { type: "eat" },
@@ -76,7 +76,8 @@ export async function getAction(view: AgentView, identity: AgentIdentity): Promi
     } else if (roll < 0.75 && inventory.length > 0) {
         // 10% chance to build if has items
         const direction = randomChoice(DIRECTIONS);
-        const block = randomChoice(inventory);
+        const slot = randomChoice(inventory);
+        const block = slot.type;
         console.log(`[Dummy AI] ${identity.name}: Building ${block} ${direction}`);
         return {
             action: { type: "build", direction, block },

@@ -16,6 +16,7 @@ GAME RULES:
 - You can speak to other agents within your vision radius.
 - You can hit adjacent agents to damage their hunger.
 - You can eat berries to restore hunger.
+- You cannot move through wood and stone blocks.
 
 AVAILABLE ACTIONS:
 - move: Move one cell in a direction (up, down, left, right)
@@ -56,8 +57,8 @@ export function formatTurnPrompt(view: AgentView): string {
 YOUR STATUS:
 - Position: (${self.position.x}, ${self.position.y})
 - Hunger: ${Math.round(self.hunger)}/${self.maxHunger || 100}
-- Inventory: [${self.inventory.join(", ")}]
-- Capacity: ${self.inventoryCapacity || 5}
+- Inventory: [${self.inventory.map(slot => `${slot.type} (${slot.count})`).join(", ")}]
+- Capacity: ${self.inventoryCapacity || 5} unique slots (max 10 per stack)
 
 WHAT YOU SEE:
 ${formatGrid(view)}
@@ -88,8 +89,8 @@ ${identity.personality ? `\nPERSONALITY:\n${identity.personality}\n` : ""}
 === YOUR STATUS (Turn ${turn}) ===
 Position: (${self.position.x}, ${self.position.y})
 Hunger: ${Math.round(self.hunger)}/${self.maxHunger || 100}
-Inventory: [${self.inventory.join(", ")}]
-Inventory Capacity: ${self.inventoryCapacity || 5}
+Inventory: [${self.inventory.map(slot => `${slot.type} (${slot.count})`).join(", ")}]
+Inventory Capacity: ${self.inventoryCapacity || 5} unique slots (max 10 per stack)
 
 === WHAT YOU SEE ===
 ${formatGrid(view)}

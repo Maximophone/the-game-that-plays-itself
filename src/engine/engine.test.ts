@@ -189,7 +189,13 @@ describe("validateAction", () => {
         it("rejects gathering when inventory is full", () => {
             state.grid.cells[4][5].block = "stone";
             const agent = state.agents.get("agent-1")!;
-            agent.inventory = ["stone", "stone", "stone", "stone", "stone"];
+            agent.inventory = [
+                { type: "stone", count: 10 },
+                { type: "stone", count: 10 },
+                { type: "stone", count: 10 },
+                { type: "stone", count: 10 },
+                { type: "stone", count: 10 },
+            ];
 
             const result = validateAction(state, "agent-1", { type: "gather", direction: "up" });
             expect(result.valid).toBe(false);
@@ -200,7 +206,7 @@ describe("validateAction", () => {
     describe("build", () => {
         it("allows building with block in inventory", () => {
             const agent = state.agents.get("agent-1")!;
-            agent.inventory = ["stone"];
+            agent.inventory = [{ type: "stone", count: 1 }];
 
             const result = validateAction(state, "agent-1", {
                 type: "build",
@@ -223,7 +229,7 @@ describe("validateAction", () => {
         it("rejects building on non-empty cell", () => {
             state.grid.cells[4][5].block = "wood";
             const agent = state.agents.get("agent-1")!;
-            agent.inventory = ["stone"];
+            agent.inventory = [{ type: "stone", count: 1 }];
 
             const result = validateAction(state, "agent-1", {
                 type: "build",
@@ -271,7 +277,7 @@ describe("validateAction", () => {
     describe("eat", () => {
         it("allows eating with food in inventory", () => {
             const agent = state.agents.get("agent-1")!;
-            agent.inventory = ["berry"];
+            agent.inventory = [{ type: "berry", count: 1 }];
 
             const result = validateAction(state, "agent-1", { type: "eat" });
             expect(result.valid).toBe(true);
@@ -378,7 +384,7 @@ describe("computeNextState", () => {
         const newState = computeNextState(state, actions);
 
         const agent = newState.agents.get("agent-1")!;
-        expect(agent.inventory).toContain("stone");
+        expect(agent.inventory.some(slot => slot.type === "stone")).toBe(true);
         expect(newState.grid.cells[4][5].block).toBeNull();
     });
 
@@ -391,13 +397,27 @@ describe("computeNextState", () => {
         const newState = computeNextState(state, actions);
 
         const agent = newState.agents.get("agent-1")!;
-        expect(agent.inventory).toContain("berry");
+        expect(agent.inventory.some(slot => slot.type === "berry")).toBe(true);
         expect(newState.grid.cells[4][5].block).toBe("berry_bush"); // Bush stays
+    });
+
+    it("berry bush is removed when berries run out", () => {
+        state.grid.cells[4][5].block = "berry_bush";
+        state.grid.cells[4][5].berriesRemaining = 1;
+
+        const actions = new Map<string, Action>();
+        actions.set("agent-1", { type: "gather", direction: "up" });
+
+        const newState = computeNextState(state, actions);
+
+        const agent = newState.agents.get("agent-1")!;
+        expect(agent.inventory.some(slot => slot.type === "berry")).toBe(true);
+        expect(newState.grid.cells[4][5].block).toBeNull(); // Bush removed
     });
 
     it("processes build action correctly", () => {
         const agent = state.agents.get("agent-1")!;
-        agent.inventory = ["stone"];
+        agent.inventory = [{ type: "stone", count: 1 }];
 
         const actions = new Map<string, Action>();
         actions.set("agent-1", { type: "build", direction: "up", block: "stone" });
@@ -405,7 +425,7 @@ describe("computeNextState", () => {
         const newState = computeNextState(state, actions);
 
         const updatedAgent = newState.agents.get("agent-1")!;
-        expect(updatedAgent.inventory).not.toContain("stone");
+        expect(updatedAgent.inventory.some(slot => slot.type === "stone")).toBe(false);
         expect(newState.grid.cells[4][5].block).toBe("stone");
     });
 
@@ -439,7 +459,7 @@ describe("computeNextState", () => {
     it("processes eat action and restores hunger", () => {
         const agent = state.agents.get("agent-1")!;
         agent.hunger = 50;
-        agent.inventory = ["berry"];
+        agent.inventory = [{ type: "berry", count: 1 }];
 
         const actions = new Map<string, Action>();
         actions.set("agent-1", { type: "eat" });
@@ -450,7 +470,7 @@ describe("computeNextState", () => {
         // After depletion and eating: 50 - 2 + 30 = 78
         const expected = 50 - state.config.hungerDepletionPerTurn + state.config.berryHungerRestore;
         expect(updatedAgent.hunger).toBe(expected);
-        expect(updatedAgent.inventory).not.toContain("berry");
+        expect(updatedAgent.inventory.some(slot => slot.type === "berry")).toBe(false);
     });
 
     it("does not mutate original state", () => {

@@ -17,7 +17,7 @@ describe("AI Player Component", () => {
             position: { x: 5, y: 5 },
             hunger: 70,
             maxHunger: 100,
-            inventory: ["berry"],
+            inventory: [{ type: "berry", count: 1 }],
             inventoryCapacity: 5
         },
         visibleCells: [
@@ -67,7 +67,7 @@ describe("AI Player Component", () => {
         it("should include status without personality", () => {
             const prompt = formatTurnPrompt(mockView);
             expect(prompt).toContain("Hunger: 70/100");
-            expect(prompt).toContain("Inventory: [berry]");
+            expect(prompt).toContain("Inventory: [berry (1)]");
             // Should NOT include personality (that's in system prompt)
             expect(prompt).not.toContain("Helpful and cautious");
         });
@@ -94,7 +94,7 @@ describe("AI Player Component", () => {
         it("should include hunger and inventory", () => {
             const prompt = formatPrompt(mockView, mockIdentity);
             expect(prompt).toContain("Hunger: 70/100");
-            expect(prompt).toContain("Inventory: [berry]");
+            expect(prompt).toContain("Inventory: [berry (1)]");
         });
 
         it("should format the grid with legend", () => {

@@ -19,6 +19,10 @@ const Grid: React.FC<GridProps> = ({ grid }) => {
             'berry': 'Berry - Food item',
         };
 
+        if (cell.block === 'berry_bush' && cell.berriesRemaining !== undefined) {
+            return `Berry Bush - Berries left: ${cell.berriesRemaining}`;
+        }
+
         return `${blockInfo[cell.block] || cell.block}`;
     };
 

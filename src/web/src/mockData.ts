@@ -8,7 +8,7 @@ mockAgents.set('agent-1', {
     name: 'Aria',
     position: { x: 5, y: 5 },
     hunger: 80,
-    inventory: ['wood', 'stone'],
+    inventory: [{ type: 'wood', count: 5 }, { type: 'stone', count: 2 }],
     color: '#3b82f6', // blue
     isAlive: true,
 });
@@ -18,7 +18,7 @@ mockAgents.set('agent-2', {
     name: 'Bob',
     position: { x: 10, y: 10 },
     hunger: 45,
-    inventory: ['berry'],
+    inventory: [{ type: 'berry', count: 3 }],
     color: '#ef4444', // red
     isAlive: true,
 });

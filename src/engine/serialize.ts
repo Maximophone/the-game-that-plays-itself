@@ -30,7 +30,7 @@ export function serializeStateForAgent(view: AgentView): string {
     lines.push("=== YOUR STATUS ===");
     lines.push(`Name: ${view.self.name}`);
     lines.push(`Hunger: ${view.self.hunger}/${view.self.maxHunger}`);
-    lines.push(`Inventory: [${view.self.inventory.join(", ") || "empty"}]`);
+    lines.push(`Inventory: [${view.self.inventory.map(slot => `${slot.type} (${slot.count})`).join(", ") || "empty"}]`);
     lines.push(`Position: (${view.self.position.x}, ${view.self.position.y})`);
     lines.push("");
 

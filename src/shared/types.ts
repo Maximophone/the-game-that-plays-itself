@@ -57,9 +57,15 @@ export const DEFAULT_CONFIG: GameConfig = {
 // World State
 // =============================================================================
 
+export interface InventorySlot {
+  type: BlockType;
+  count: number;
+}
+
 export interface Cell {
   terrain: BlockType; // Base layer (always "grass" for now)
   block: BlockType | null; // Block on top of terrain (stone, wood, etc.)
+  berriesRemaining?: number; // For berry_bush blocks
 }
 
 export interface Grid {
@@ -73,7 +79,7 @@ export interface Agent {
   name: string;
   position: Position;
   hunger: number; // 0-100
-  inventory: BlockType[]; // Max items = config.inventorySize
+  inventory: InventorySlot[]; // Max unique items = config.inventorySize, each stackable to 10
   color: string; // Hex color for visualization
   isAlive: boolean;
   lastThought?: string; // Most recent thought/reasoning from AI
@@ -129,7 +135,7 @@ export interface AgentView {
     position: Position;
     hunger: number;
     maxHunger: number;
-    inventory: BlockType[];
+    inventory: InventorySlot[];
     inventoryCapacity: number;
   };
   visibleCells: VisibleCell[];

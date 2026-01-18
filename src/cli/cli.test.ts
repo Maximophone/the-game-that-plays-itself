@@ -45,10 +45,9 @@ describe("SimulationRunner Integration", () => {
         // Verify replay file exists
         const files = fs.readdirSync(testOutputDir).filter(f => f.endsWith(".json"));
         expect(files.length).toBe(1);
-
         const replayContent = JSON.parse(fs.readFileSync(path.join(testOutputDir, files[0]), "utf-8"));
         expect(replayContent.metadata.status).toBe("completed");
         expect(replayContent.turns.length).toBeGreaterThan(0);
-        expect(replayContent.metadata.config.width).toBe(10);
+        expect(replayContent.metadata.config.gridWidth).toBe(10);
     });
 });

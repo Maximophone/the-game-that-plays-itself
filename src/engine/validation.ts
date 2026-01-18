@@ -19,6 +19,7 @@ import {
     getCell,
     isFood,
     canBuildAt,
+    getGatherYield,
 } from "./helpers.js";
 
 /**
@@ -106,8 +107,13 @@ function validateGather(
         return { valid: false, reason: "No gatherable resource at target" };
     }
 
-    // Check inventory space
-    if (agent.inventory.length >= state.config.inventorySize) {
+    // Check inventory space (stacking aware)
+    const canStack = agent.inventory.some(
+        (slot) => slot.type === getGatherYield(targetCell.block!) && slot.count < 10
+    );
+    const hasEmptySlot = agent.inventory.length < state.config.inventorySize;
+
+    if (!canStack && !hasEmptySlot) {
         return { valid: false, reason: "Inventory is full" };
     }
 
@@ -137,7 +143,8 @@ function validateBuild(
     }
 
     // Check if agent has the block in inventory
-    if (!agent.inventory.includes(block as any)) {
+    const hasBlock = agent.inventory.some((slot) => slot.type === block && slot.count > 0);
+    if (!hasBlock) {
         return { valid: false, reason: `No ${block} in inventory` };
     }
 
@@ -201,7 +208,7 @@ function validateHit(
  */
 function validateEat(agent: Agent): ValidationResult {
     // Check if agent has food in inventory
-    const hasFood = agent.inventory.some((item) => isFood(item));
+    const hasFood = agent.inventory.some((slot) => isFood(slot.type));
     if (!hasFood) {
         return { valid: false, reason: "No food in inventory" };
     }
